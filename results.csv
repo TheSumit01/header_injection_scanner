@@ -1,0 +1,4 @@
+domain,location_header,header_poisoning,header_injection,original_location,injected_location,error
+gargicollege.in,True,True,True,https://gargicollege.in/,https://evil.com/,
+digitaldefynd.com,True,False,True,https://digitaldefynd.com/,,
+example.com,False,False,False,,,

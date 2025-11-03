@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Scan Results</title>
+    <style>
+      body {
+        background: #181a1b;
+        color: #e8e6e3;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        text-align: center;
+        margin-top: 40px;
+        color: #ffb86c;
+      }
+      a {
+        color: #8be9fd;
+        text-decoration: none;
+        margin-left: 24px;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      table {
+        width: 96%;
+        margin: 32px auto;
+        border-collapse: collapse;
+        background: #23272a;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 16px #000a;
+      }
+      th, td {
+        border: 1px solid #44475a;
+        padding: 8px 10px;
+        text-align: left;
+      }
+      th {
+        background-color: #282a36;
+        color: #f8f8f2;
+      }
+      tr:nth-child(even) {
+        background: #22232a;
+      }
+      tr:nth-child(odd) {
+        background: #23272a;
+      }
+      b {
+        color: #ffb86c;
+      }
+      hr {
+        border: 0;
+        border-top: 1px solid #44475a;
+        margin: 6px 0;
+      }
+    </style>
+</head>
+<body>
+    <h1>Scan Results</h1>
+    <a href="/">New Scan</a><br /><br />
+    <table>
+        <thead>
+            <tr>
+                <th>Domain</th>
+                <th>Location Header Found</th>
+                <th>Header Poisoning</th>
+                <th>Header Injection</th>
+                <th>Original Redirect Chain</th>
+                <th>Injection Results</th>
+                <th>Errors</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for res in results %}
+            <tr>
+                <td>{{ res.domain }}</td>
+                <td>{{ res.location_header_found }}</td>
+                <td>{{ res.header_poisoning }}</td>
+                <td>{{ res.header_injection }}</td>
+                <td>
+                    {% for step in res.original_redirect_chain %}
+                        {{ step.status }} - {{ step.location }}<br/>
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for header, chain in res.injection_results.items() %}
+                        <b>{{ header }}:</b><br/>
+                        {% for step in chain %}
+                            {{ step.status }} - {{ step.location }}<br/>
+                        {% endfor %}
+                        <hr/>
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for err in res.errors %}
+                        {{ err }}<br/>
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html> 

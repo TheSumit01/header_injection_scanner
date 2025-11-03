@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Header Injection Scanner</title>
+    <style>
+        body {
+            background: #181a1b;
+            color: #e8e6e3;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 40px;
+            color: #ffb86c;
+        }
+        form {
+            background: #23272a;
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 32px 24px 24px 24px;
+            border-radius: 12px;
+            box-shadow: 0 2px 16px #000a;
+        }
+        label {
+            color: #e8e6e3;
+            font-size: 1.1em;
+        }
+        input[type="file"] {
+            background: #181a1b;
+            color: #e8e6e3;
+            border: 1px solid #444;
+            border-radius: 6px;
+            padding: 6px;
+            margin-top: 8px;
+        }
+        button {
+            background: #44475a;
+            color: #f8f8f2;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 24px;
+            font-size: 1em;
+            margin-top: 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #6272a4;
+        }
+        p[style] {
+            color: #ff5555 !important;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Header Injection Scanner</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <label>Upload domains file (one domain per line):</label><br />
+        <input type="file" name="domains_file" accept=".txt" required /><br /><br />
+        <button type="submit">Start Scan</button>
+    </form>
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+</body>
+</html> 

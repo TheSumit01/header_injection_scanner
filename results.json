@@ -1,0 +1,29 @@
+[
+  {
+    "domain": "gargicollege.in",
+    "location_header": true,
+    "header_poisoning": true,
+    "header_injection": true,
+    "original_location": "https://gargicollege.in/",
+    "injected_location": "https://evil.com/",
+    "error": null
+  },
+  {
+    "domain": "digitaldefynd.com",
+    "location_header": true,
+    "header_poisoning": false,
+    "header_injection": true,
+    "original_location": "https://digitaldefynd.com/",
+    "injected_location": null,
+    "error": null
+  },
+  {
+    "domain": "example.com",
+    "location_header": false,
+    "header_poisoning": false,
+    "header_injection": false,
+    "original_location": null,
+    "injected_location": null,
+    "error": null
+  }
+]
